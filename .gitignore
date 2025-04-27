@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.env
+*.venv
+*.egg-info/
+*.log
+
+# Django
+db.sqlite3
+/media/
+staticfiles/
+
+# Ambiente virtual
+venv/
+.env/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
