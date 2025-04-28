@@ -2,7 +2,7 @@
 #__pycache__/
 #*.py[cod]
 #*.env
-#*.venv
+*.venv
 #*.egg-info/
 #*.log
 
@@ -16,10 +16,10 @@
 #.env/
 
 # IDEs
-#.vscode/
-#.idea/
-#*.sublime-project
-#*.sublime-workspace
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
 # MacOS
 #.DS_Store
