@@ -5,30 +5,40 @@
     <title>Equipamentos - Manutenção Smart Fit</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
-        .equipamento { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+        .container {
+            display: grid; /* Usando Grid Layout para organizar os cards */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Cria colunas responsivas */
+            gap: 15px; /* Espaçamento entre os cards */
+        }
+        .card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 5px;
+        }
         .verde { background-color: #d4edda; }
         .amarelo { background-color: #fff3cd; }
         .vermelho { background-color: #f8d7da; }
-        h1 { color: #333; }
+        h2 { font-size: 1.2em; margin-top: 0; margin-bottom: 5px; }
+        p { margin-bottom: 5px; font-size: 0.9em; }
+        small { font-size: 0.8em; color: #777; }
+        .editar-link { display: block; margin-top: 10px; font-size: 0.9em; }
     </style>
 </head>
 <body>
     <h1>Status dos Equipamentos</h1>
 
-    {% for eq in equipamentos %}
-        <div class="equipamento {{ eq.status }}">
-            <h2>{{ eq.nome }} ({{ eq.categoria }})</h2>
+    <div class="container">
+        {% for eq in equipamentos %}
+        <div class="card {{ eq.status }}">
+            <h2>{{ eq.nome }}</h2>
+            <p><strong>Categoria:</strong> {{ eq.categoria }}</p>
             <p><strong>Status:</strong> {{ eq.get_status_display }}</p>
-            <p><strong>Defeito relatado:</strong> {{ eq.defeito_relatado|default:"Nenhum" }}</p>
-            <p><strong>Previsão de conserto:</strong> {{ eq.previsao_conserto|date:"d/m/Y" }}</p>
-            <p><strong>Técnico responsável:</strong> {{ eq.tecnico_responsavel|default:"Não informado" }}</p>
             <p><small>Última atualização: {{ eq.ultima_atualizacao|date:"d/m/Y H:i" }}</small></p>
-
-            <!-- Link para editar o equipamento -->
-            <a href="{% url 'editar_equipamento' eq.pk %}">Editar</a>
+            <a class="editar-link" href="{% url 'editar_equipamento' eq.pk %}">Editar</a>
         </div>
-    {% empty %}
+        {% empty %}
         <p>Nenhum equipamento registrado ainda.</p>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </body>
 </html>
